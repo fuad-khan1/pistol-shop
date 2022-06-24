@@ -7,13 +7,8 @@
 body {
   font-family: "Roboto", sans-serif;
 }
-.cart-item-show{
-  width: 50%;
-  padding: 20px;
-  margin: auto 15px;
-  border: 1px solid green;
-  border-radius: 12px;
-  background-color: aquamarine;
+
+.cart-item-show h3{
   text-align: center;
 }
 
