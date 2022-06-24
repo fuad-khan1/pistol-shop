@@ -13,31 +13,9 @@ function App() {
   const [modal, setModal] = useState(false);
   console.log(guns);
 
-  const customStyles = {
-    content: {
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
-      transform: "translate(-50%, -50%)",
-      height: "500px",
-      width: "600px",
-      overflow: "auto",
-    },
-  };
-
   const handleAddToCart = (gun) => {
     const newCart = [...cart, gun];
     setCart(newCart);
-  };
-
-  const toggleModal = () => {
-    setModal(true);
-  };
-
-  const closeModal = () => {
-    setModal(false);
   };
 
   useEffect(() => {
@@ -48,25 +26,21 @@ function App() {
 
   return (
     <div>
-      <Navbar cart={cart} toggleModal={toggleModal} />
-      <div className='card-container'>
+      <Navbar cart={cart} />
+      <div className="cart-item-show">
+      {
+        cart.map((item) => (
+        <h3 key={item.id}>
+           {item.name}
+        </h3>
+      ))
+      }
+     </div>
+      <div className="card-container">
         {guns.map((gun) => (
           <Card gun={gun} key={gun.id} handleAddToCart={handleAddToCart} />
         ))}
       </div>
-      <Modal isOpen={modal} onRequestClose={closeModal} style={customStyles}>
-        <button className='modal-close-button' onClick={closeModal}>
-          <CgCloseR size={25} />
-        </button>
-        {cart.length === 0 && (
-          <div className='cart-warning'>
-            <p> Cart is empty </p>
-          </div>
-        )}
-        {cart.map((item) => (
-          <h1>Name: {item.name}</h1>
-        ))}
-      </Modal>
     </div>
   );
 }
